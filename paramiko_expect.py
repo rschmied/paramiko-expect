@@ -112,7 +112,7 @@ class SSHClientInteraction(object):
             len(re_strings) == 0 or
             not [re_string
                  for re_string in re_strings
-                 if re.match('.*\n' + re_string + '$',
+                 if re.match('(.*\n)?' + re_string + '$',
                              self.current_output, re.DOTALL)]
         ):
             # Read some of the output
@@ -142,7 +142,7 @@ class SSHClientInteraction(object):
         if len(re_strings) != 0:
             found_pattern = [(re_index, re_string)
                              for re_index, re_string in enumerate(re_strings)
-                             if re.match('.*\n' + re_string + '$',
+                             if re.match('(.*\n)?' + re_string + '$',
                                          self.current_output, re.DOTALL)]
 
         # Clean the output up by removing the sent command
